@@ -43,8 +43,23 @@ def row_max(matrix):
     
     return np.array(ans)
 
-# Step 3 - row_sum (not yet solved)
-# TODO: implement
+# Step 3 - row_sum
+import numpy as np
+
+def row_sum(matrix):
+    """Return per-row sums of a 2D array with shape (N, 1)."""
+    # TODO: return the sum along axis 1 keeping the reduced dimension
+    rows = len(matrix)
+    cols = len(matrix[0])
+    ans = []
+
+    for r in range(rows):
+        val = 0 
+        for c in range(cols):
+            val += matrix[r][c]
+        ans.append([val])
+    
+    return np.array(ans)
 
 # Step 4 - exp_shifted (not yet solved)
 # TODO: implement
