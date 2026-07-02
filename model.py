@@ -61,8 +61,39 @@ def row_sum(matrix):
     
     return np.array(ans)
 
-# Step 4 - exp_shifted (not yet solved)
-# TODO: implement
+# Step 4 - exp_shifted
+import numpy as np
+
+def row_max(matrix):
+    # TODO: return the maximum value of each row of `matrix` with keepdims True for broadcasting.
+
+    rows = len(matrix)
+    cols = len(matrix[0])
+    ans = []
+
+    for r in range(rows):
+         max_val = float("-inf")
+         for c in range(cols):
+            if matrix[r][c] > max_val:
+                max_val = matrix[r][c]
+         ans.append([max_val])
+    
+    return np.array(ans)
+
+def exp_shifted(logits):
+    """Subtract per-row max from logits and exponentiate elementwise."""
+    # TODO: shift each row of logits by its max and return elementwise exp
+    n = len(logits)
+    cols = len(logits[0])
+    max_val = row_max(logits)
+
+    ans = np.zeros_like(logits, dtype=float)
+    for i in range(n):
+        indi_max = max_val[i][0]
+        for c in range(cols):
+            ans[i][c] = np.exp(logits[i][c] - indi_max)
+    
+    return ans
 
 # Step 5 - stable_softmax (not yet solved)
 # TODO: implement
