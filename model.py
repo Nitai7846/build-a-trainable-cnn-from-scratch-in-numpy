@@ -130,8 +130,19 @@ def gather_true_class_probs(probs, labels):
     
     return np.array(ans)
 
-# Step 8 - cross_entropy_loss (not yet solved)
-# TODO: implement
+# Step 8 - cross_entropy_loss
+import numpy as np
+
+def cross_entropy_loss(probs, labels, eps=1e-12):
+    # TODO: return the mean negative log-likelihood of the true-class probabilities
+    n = len(probs)
+    true_class_probs = gather_true_class_probs(probs, labels)
+    loss = 0
+    for i in range(0, n):
+        loss+=np.log(true_class_probs[i]+eps)
+    loss = (-1)*round(loss/n, 4)
+
+    return loss
 
 # Step 9 - accuracy (not yet solved)
 # TODO: implement
