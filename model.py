@@ -410,8 +410,17 @@ def flatten_backward(d_out, cache):
     dx = d_out.reshape(n,c,h,w)
     return dx
 
-# Step 29 - linear_forward (not yet solved)
-# TODO: implement
+# Step 29 - linear_forward
+def linear_forward(x, weights, bias):
+    # TODO: compute X @ W + b and cache the inputs needed for backprop.
+
+    x_out = x @ weights + bias 
+    cache = {
+        'x' : x, 
+        'weights' : weights
+    }
+
+    return x_out, cache
 
 # Step 30 - linear_grad_input (not yet solved)
 # TODO: implement
