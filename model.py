@@ -459,8 +459,18 @@ def linear_backward(dout, cache):
 
     return dx, dW, db
 
-# Step 34 - softmax_cross_entropy_forward (not yet solved)
-# TODO: implement
+# Step 34 - softmax_cross_entropy_forward
+def softmax_cross_entropy_forward(logits, y):
+    # TODO: return the mean cross-entropy loss for logits (N, C) and integer labels y (N,).
+    m = logits.max(axis=1, keepdims=True)
+    shifted = logits-m 
+    exp = np.exp(shifted)
+    s = exp.sum(axis=1, keepdims=True)
+    p = exp/s 
+    N = logits.shape[0]
+    true_class_probs = p[np.arange(N), y]
+    losses = -np.log(true_class_probs)
+    return float(losses.mean())
 
 # Step 35 - softmax_cross_entropy_backward (not yet solved)
 # TODO: implement
