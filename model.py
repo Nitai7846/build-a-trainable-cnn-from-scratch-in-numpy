@@ -472,11 +472,21 @@ def softmax_cross_entropy_forward(logits, y):
     losses = -np.log(true_class_probs)
     return float(losses.mean())
 
-# Step 35 - softmax_cross_entropy_backward (not yet solved)
-# TODO: implement
+# Step 35 - softmax_cross_entropy_backward
+def softmax_cross_entropy_backward(logits, y):
+    # TODO: return the fused softmax-cross-entropy gradient of shape (N, C).
+    N = logits.shape[0]
+    p = stable_softmax(logits)
+    dlogits = (p-one_hot(y, logits.shape[1])) / N 
+    return dlogits + 0.0
 
-# Step 36 - sgd_step (not yet solved)
-# TODO: implement
+# Step 36 - sgd_step
+import numpy as np
+
+def sgd_step(param, grad, lr):
+    # TODO: return the SGD-updated parameter array (param - lr * grad).
+    param = param - lr*grad
+    return param
 
 # Step 37 - adam_update_m (not yet solved)
 # TODO: implement
