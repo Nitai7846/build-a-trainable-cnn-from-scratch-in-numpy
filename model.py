@@ -488,8 +488,13 @@ def sgd_step(param, grad, lr):
     param = param - lr*grad
     return param
 
-# Step 37 - adam_update_m (not yet solved)
-# TODO: implement
+# Step 37 - adam_update_m
+import numpy as np
+
+def adam_update_m(m, grad, beta_one):
+    # TODO: return the updated first moment estimate using beta_one and grad.
+    m_t = beta_one*m + (1-beta_one)*grad 
+    return m_t
 
 # Step 38 - adam_update_v (not yet solved)
 # TODO: implement
