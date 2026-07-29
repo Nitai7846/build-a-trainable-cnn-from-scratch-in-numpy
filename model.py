@@ -509,17 +509,53 @@ def adam_bias_correct(moment, beta, t):
     # TODO: return moment divided by (1 - beta**t) to undo Adam's zero-init bias.
     return moment/(1-beta**t)
 
-# Step 40 - adam_param_step (not yet solved)
-# TODO: implement
+# Step 40 - adam_param_step
+import numpy as np
 
-# Step 41 - adam_step (not yet solved)
-# TODO: implement
+def adam_param_step(param, m_hat, v_hat, lr, eps):
+    # TODO: apply one Adam parameter update using bias-corrected moments
+    param = param - lr*(m_hat/(np.sqrt(v_hat) + eps))
+    return param
 
-# Step 42 - init_conv_layer (not yet solved)
-# TODO: implement
+# Step 41 - adam_step
+import numpy as np
 
-# Step 43 - init_linear_layer (not yet solved)
-# TODO: implement
+def adam_step(param, grad, m, v, t, lr, beta_one, beta_two, eps):
+    # TODO: chain the four Adam helpers and return (new_param, new_m, new_v)
+    m_t = adam_update_m(m, grad, beta_one)
+    m_v = adam_update_v(v, grad, beta_two)
+    new_m = adam_bias_correct(m_t, beta_one, t)
+    new_v = adam_bias_correct(m_v, beta_two, t)
+    new_param = adam_param_step(param, new_m, new_v, lr, eps)
+    return new_param, m_t, m_v
+
+# Step 42 - init_conv_layer
+def init_conv_layer(out_channels, in_channels, kernel_size, seed=0):
+    # TODO: Build He-initialized weights and a zero bias for a single conv layer.
+    fan_in = in_channels * kernel_size * kernel_size
+    W = he_init((out_channels, in_channels, kernel_size, kernel_size), fan_in, seed)
+    b = init_zero_bias(out_channels)
+    
+    conv_dict ={
+        'W' : W, 
+        'b' : b
+    }
+
+    return conv_dict
+
+# Step 43 - init_linear_layer
+def init_linear_layer(in_features, out_features, seed=0):
+    # TODO: return {'W': He-init matrix (in_features, out_features), 'b': zero bias (out_features,)}
+    fan_in = in_features 
+    W = he_init((in_features,out_features), fan_in, seed)
+    b = init_zero_bias(out_features)
+
+    lin_dict = {
+        'W': W , 
+        'b': b
+    }
+    
+    return lin_dict
 
 # Step 44 - init_lenet (not yet solved)
 # TODO: implement

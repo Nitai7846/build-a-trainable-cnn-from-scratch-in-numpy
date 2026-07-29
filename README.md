@@ -49,10 +49,10 @@ python scaffold.py
 - [x] **37.** adam_update_m
 - [x] **38.** adam_update_v
 - [x] **39.** adam_bias_correct
-- [ ] **40.** adam_param_step
-- [ ] **41.** adam_step
-- [ ] **42.** init_conv_layer
-- [ ] **43.** init_linear_layer
+- [x] **40.** adam_param_step
+- [x] **41.** adam_step
+- [x] **42.** init_conv_layer
+- [x] **43.** init_linear_layer
 - [ ] **44.** init_lenet
 - [ ] **45.** forward_conv_block
 - [ ] **46.** forward_classifier_block
