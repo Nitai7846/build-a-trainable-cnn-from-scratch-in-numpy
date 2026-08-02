@@ -648,8 +648,24 @@ def backward_conv_block(dout, cache):
 
     return (dx, dW, db)
 
-# Step 49 - backward_classifier_block (not yet solved)
-# TODO: implement
+# Step 49 - backward_classifier_block
+def backward_classifier_block(dlogits, cache):
+    # TODO: backprop through fc2 -> relu -> fc1 -> flatten using the cached values
+
+    dfc_2, dW2, db2 = linear_backward(dlogits, cache['fc2_cache'])
+    d_relu = relu_backward(dfc_2, cache['relu_cache'])
+    dfc_1, dW1, db1 = linear_backward(d_relu, cache['fc1_cache'])
+
+    dx = flatten_backward(dfc_1, cache['flatten_cache'])
+
+    cache = {
+        'dx':dx,
+        'fc1': {'dW':dW1, 'db':db1},
+        'fc2': {'dW':dW2, 'db':db2}
+
+    }
+
+    return cache
 
 # Step 50 - lenet_backward (not yet solved)
 # TODO: implement
