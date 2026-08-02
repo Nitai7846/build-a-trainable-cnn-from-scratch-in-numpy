@@ -140,7 +140,7 @@ def cross_entropy_loss(probs, labels, eps=1e-12):
     loss = 0
     for i in range(0, n):
         loss+=np.log(true_class_probs[i]+eps)
-    loss = (-1)*round(loss/n, 4)
+    loss = (-1)*(loss/n)
 
     return loss
 
