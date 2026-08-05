@@ -697,8 +697,13 @@ def build_synthetic_image_dataset(num_samples, num_classes, image_size, in_chann
     x += (y-(num_classes-1)/2).reshape(-1,1,1,1)
     return x,y
 
-# Step 53 - shuffle_indices (not yet solved)
-# TODO: implement
+# Step 53 - shuffle_indices
+import numpy as np
+
+def shuffle_indices(n, seed=0):
+    # TODO: return a reproducible permutation of [0, n) as an int ndarray of shape (n,).
+    rng = np.random.RandomState(seed)
+    return rng.permutation(n)
 
 # Step 54 - train_test_split (not yet solved)
 # TODO: implement
