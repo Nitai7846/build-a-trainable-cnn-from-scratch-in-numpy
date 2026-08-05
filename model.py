@@ -714,8 +714,16 @@ def train_test_split(x, y, test_fraction=0.2, seed=0):
     test, train = idx[:n_test] , idx[n_test:]
     return x[train], y[train], x[test], y[test]
 
-# Step 55 - iterate_minibatches (not yet solved)
-# TODO: implement
+# Step 55 - iterate_minibatches
+def iterate_minibatches(x, y, batch_size, seed=0):
+    # TODO: yield shuffled mini-batches of features and labels for one epoch of training.
+    N = x.shape[0]
+    idx = shuffle_indices(N, seed=seed)
+    n_batches = N // batch_size 
+
+    for k in range(n_batches):
+        batch = idx[k * batch_size:(k + 1) * batch_size]
+        yield x[batch], y[batch]
 
 # Step 56 - train_step (not yet solved)
 # TODO: implement
